@@ -1,6 +1,7 @@
 # Load required libraries
 library(shiny)
 library(ggplot2)
+library(plotly)
 
 # Define UI
 ui <- fluidPage(
@@ -35,13 +36,18 @@ ui <- fluidPage(
                  uiOutput("accidentcheckboxes")
                ),
                mainPanel(
-                 plotOutput("accidentPlot")
+                 plotlyOutput("accidentPlot")
                )
              )
           ),
     
     # Third tab - table
     tabPanel("Table",
-             tableOutput("mytable"))
+             sidebarLayout(
+               sidebarPanel(
+                 
+               ),
+               mainPanel(
+                 tableOutput("mytable"))))
   )
 )
