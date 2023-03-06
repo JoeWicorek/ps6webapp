@@ -33,7 +33,11 @@ ui <- fluidPage(
     tabPanel("Plot",
              sidebarLayout(
                sidebarPanel(
-                 uiOutput("accidentcheckboxes")
+                 uiOutput("accidentcheckboxes"),
+                 radioButtons("vis_button",
+                              "Display time line or area chart",
+                              choices = c("Line", "Area"),
+                              selected = "Line") ## button for selecting type of chart
                ),
                mainPanel(
                  plotlyOutput("accidentPlot")

@@ -55,12 +55,21 @@ server <- function(input, output) {
   # Render the plot
   output$accidentPlot <- renderPlotly({
     print("rendering...")
-    ggplot(plotData(), aes(x=year,y= n, color = `Accident Type`,group= `Accident Type`)) +
+    if(input$vis_button == "Line")({
+    ggplot(plotData(), aes(x=year,y= n, color = `Accident Type`, group = `Accident Type`)) +
       geom_line(aes(group=`Accident Type`)) +
       xlab("Year") +
       ylab("Number of Accidents") +
       ggtitle("Accidents Over Time") +
       theme(plot.title = element_text(hjust = 0.5))
+    })else ({
+    ggplot(plotData(), aes(x=year,y= n, color = `Accident Type`, group = `Accident Type`, fill = `Accident Type`)) +
+      geom_area(aes(group=`Accident Type`)) +
+      xlab("Year") +
+      ylab("Number of Accidents") +
+      ggtitle("Accidents Over Time") +
+      theme(plot.title = element_text(hjust = 0.5))
+    }) 
   })
   
   # Render table
